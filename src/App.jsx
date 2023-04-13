@@ -6,6 +6,8 @@ function App() {
   let len = arr.length,
       taken = new Array(len);
 
+  console.log({taken})
+
   function getRandom(n) {
     var result = new Array(n)
     if (n > len)
@@ -43,7 +45,7 @@ function App() {
       setGraph((prevGraph) => {
         return({
           ...prevGraph,
-          [node]: [current, ...['prueba1','prueba2','prueba3']]
+          [node]: [current, ...getRandom(3)]
         })
         
       })
@@ -53,7 +55,6 @@ function App() {
   // setOutput(graph[node].map(index => index === 'base' ? 'Base' : index))
   console.log('you can travel to: ' + output)
   }
-
 
   let countries = 'loading'
   if (graph) {
