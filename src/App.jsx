@@ -31,6 +31,13 @@ function App() {
   //     .catch(error => console.error(error));
   // }, []);
 
+//   let countries = 'loading'
+//   if (data) {
+//     countries = data.map((item, index) =>
+//     <li key={index}>{item.name.official}</li>
+//     )
+//   }
+
   const [current, setCurrent] = useState('base')
   const [output, setOutput] = useState(graph[current])
   
