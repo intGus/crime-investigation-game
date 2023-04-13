@@ -1,0 +1,26 @@
+arr = ['Venezuela', 'Mexico', 'Colombia', 'Peru', 'Chile', 'Argentina', 'Holanda', 'Bolivia', 'Uruguay', 'Sudafrica', 'Ecuador', 'Brasil', 'Canada', 'Dinamarca', 'Noruega', 'Australia', 'Japon', 'China', 'India', 'Pakistan', 'Espana', 'Portugal']
+
+var len = arr.length,
+    taken = new Array(len);
+
+function getRandom(arr, n) {
+    var result = new Array(n)
+    if (n > len)
+        throw new RangeError("getRandom: more elements taken than available");
+    while (n--) {
+        var x = Math.floor(Math.random() * len);
+        result[n] = arr[x in taken ? taken[x] : x];
+        taken[x] = --len in taken ? taken[len] : len;
+    }
+    return result;
+}
+
+const graph = {
+  a: getRandom(arr, 3),
+  b: getRandom(arr, 3),
+  c: getRandom(arr, 3),
+  d: getRandom(arr, 3)
+}
+
+console.log(graph['a'])
+console.log(graph['a'][1])
