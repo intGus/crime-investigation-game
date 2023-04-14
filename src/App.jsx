@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import data from './assets/data.json'
 
 function App() {
-  const arr = ['Venezuela', 'Mexico', 'Colombia', 'Peru', 'Chile', 'Argentina', 'Holanda', 'Bolivia', 'Uruguay', 'Sudafrica', 'Ecuador', 'Brasil', 'Canada', 'Dinamarca', 'Noruega', 'Australia', 'Japon', 'China', 'India', 'Pakistan', 'Espana', 'Portugal']
+  // const arr = ['Venezuela', 'Mexico', 'Colombia', 'Peru', 'Chile', 'Argentina', 'Holanda', 'Bolivia', 'Uruguay', 'Sudafrica', 'Ecuador', 'Brasil', 'Canada', 'Dinamarca', 'Noruega', 'Australia', 'Japon', 'China', 'India', 'Pakistan', 'Espana', 'Portugal']
+  const arr = data
   let len = arr.length
 
   const [guardian, setGuardian] = useState(new Set())
@@ -13,7 +15,7 @@ function App() {
 
   function getRandom(n) {
     console.log(guardian.size)
-    if (guardian.size - 1 >= len) {
+    if (guardian.size - 1 >= len) { //- 1 to account for the added 'base' item
       console.log('no more possible trips')
       return
     }
@@ -41,7 +43,6 @@ function App() {
   useEffect(() => {
     const newGuardian = new Set([...guardian, ...graph[current]])
     setGuardian(newGuardian)
-    console.log({newGuardian})
     }, [graph]);
 
   const [current, setCurrent] = useState('base')
@@ -62,19 +63,16 @@ function App() {
         
       })
     }
-
-  setCurrent(node)
-  // setOutput(graph[node].map(index => index === 'base' ? 'Base' : index))
-  // console.log('you can travel to: ' + output)
+    setCurrent(node)
   }
 
   let countries = 'loading'
   if (graph) {
     countries = graph[current].map((item, index) =>
-    <li key={index} onClick={()=>travel(item)}>{item === 'base' ? 'Base' : arr[item]}</li>
+    <li key={index} onClick={()=>travel(item)}>{item === 'base' ? 'Base' : `${arr[item].capital}, ${arr[item].name.common}`}</li>
     )
   }
-  
+
   return (
     <div className="App">
       {countries}
@@ -88,12 +86,5 @@ function App() {
   //     .then(json => setData(getRandom(json, 3)))
   //     .catch(error => console.error(error));
   // }, []);
-
-//   let countries = 'loading'
-//   if (data) {
-//     countries = data.map((item, index) =>
-//     <li key={index}>{item.name.official}</li>
-//     )
-//   }
 
 export default App
