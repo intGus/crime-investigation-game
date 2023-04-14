@@ -3,43 +3,48 @@ import './App.css'
 
 function App() {
   const arr = ['Venezuela', 'Mexico', 'Colombia', 'Peru', 'Chile', 'Argentina', 'Holanda', 'Bolivia', 'Uruguay', 'Sudafrica', 'Ecuador', 'Brasil', 'Canada', 'Dinamarca', 'Noruega', 'Australia', 'Japon', 'China', 'India', 'Pakistan', 'Espana', 'Portugal']
-  let len = arr.length,
-      taken = new Array(len);
+  let len = arr.length
 
-  console.log({taken})
+  const [guardian, setGuardian] = useState(new Set())
+
+  const [graph, setGraph] = useState({
+    base: []
+  });
 
   function getRandom(n) {
-    var result = new Array(n)
-    if (n > len)
-        throw new RangeError("getRandom: more elements taken than available");
-    while (n--) {
-        var x = Math.floor(Math.random() * len);
-        result[n] = arr[x in taken ? taken[x] : x];
-        taken[x] = --len in taken ? taken[len] : len;
+    console.log(guardian.size)
+    if (guardian.size - 1 >= len) {
+      console.log('no more possible trips')
+      return
     }
+    const result = [];
+    const tempGuardian = new Set([...guardian]);
+    console.log({tempGuardian})
+    while (result.length < n && tempGuardian.size <= len) {
+      const index = Math.floor(len * Math.random());
+      console.log({index})
+      if (tempGuardian.has(index)) {
+        continue;
+      }
+      tempGuardian.add(index);
+      result.push(index);
+    }   
     return result;
   }
 
-  const [graph, setGraph] = useState({
-    base: getRandom(3)
-  });
+  useEffect(() => {
+    setGraph({
+      base: getRandom(3)
+    });
+  }, []);
   
-  // useEffect(() => {
-  //   fetch('https://restcountries.com/v3.1/all?fields=name,capital')
-  //     .then(response => response.json())
-  //     .then(json => setData(getRandom(json, 3)))
-  //     .catch(error => console.error(error));
-  // }, []);
-
-//   let countries = 'loading'
-//   if (data) {
-//     countries = data.map((item, index) =>
-//     <li key={index}>{item.name.official}</li>
-//     )
-//   }
+  useEffect(() => {
+    const newGuardian = new Set([...guardian, ...graph[current]])
+    setGuardian(newGuardian)
+    console.log({newGuardian})
+    }, [graph]);
 
   const [current, setCurrent] = useState('base')
-  const [output, setOutput] = useState(graph[current])
   
   function travel(node) {
     if (!graph[current].includes(node)) {
@@ -60,13 +65,13 @@ function App() {
 
   setCurrent(node)
   // setOutput(graph[node].map(index => index === 'base' ? 'Base' : index))
-  console.log('you can travel to: ' + output)
+  // console.log('you can travel to: ' + output)
   }
 
   let countries = 'loading'
   if (graph) {
     countries = graph[current].map((item, index) =>
-    <li key={index} onClick={()=>travel(item)}>{item}</li>
+    <li key={index} onClick={()=>travel(item)}>{item === 'base' ? 'Base' : arr[item]}</li>
     )
   }
   
@@ -76,5 +81,19 @@ function App() {
     </div>
   )
 }
+
+  // useEffect(() => {
+  //   fetch('https://restcountries.com/v3.1/all?fields=name,capital')
+  //     .then(response => response.json())
+  //     .then(json => setData(getRandom(json, 3)))
+  //     .catch(error => console.error(error));
+  // }, []);
+
+//   let countries = 'loading'
+//   if (data) {
+//     countries = data.map((item, index) =>
+//     <li key={index}>{item.name.official}</li>
+//     )
+//   }
 
 export default App
