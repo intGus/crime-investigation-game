@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import data from './assets/data.json'
+import Container from './components/Container'
+import Card from './components/Card'
 
 function App() {
   // const arr = ['Venezuela', 'Mexico', 'Colombia', 'Peru', 'Chile', 'Argentina', 'Holanda', 'Bolivia', 'Uruguay', 'Sudafrica', 'Ecuador', 'Brasil', 'Canada', 'Dinamarca', 'Noruega', 'Australia', 'Japon', 'China', 'India', 'Pakistan', 'Espana', 'Portugal']
@@ -75,7 +77,26 @@ function App() {
 
   return (
     <div className="App">
-      {countries}
+      
+      <Container>
+        <Card>
+          Clue 1
+        </Card>
+        <Card>
+          Clue 2
+        </Card>
+        <Card>
+          Clue 3
+        </Card>
+      </Container>
+      <Container passedColumns={4}>
+      <Card>
+          {countries}
+        </Card>
+        <Card></Card>
+        <Card></Card>
+        <Card></Card>
+      </Container>
     </div>
   )
 }
