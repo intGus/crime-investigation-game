@@ -71,13 +71,16 @@ function App() {
   let countries = 'loading'
   if (graph) {
     countries = graph[current].map((item, index) =>
-    <li key={index} onClick={()=>travel(item)}>{item === 'base' ? 'Base' : `${arr[item].capital}, ${arr[item].name.common}`}</li>
+    <li key={index} onClick={()=>travel(item)}>{item === 'base' ? 'Base' : arr[item].capital}</li>
     )
   }
 
   return (
     <div className="App">
-      
+      <div className="nes-container with-title is-rounded">
+        <p class="title">Current Location</p>
+        {arr[current] ?  `${arr[current].capital}, ${arr[current].name.common}` : 'Base'}
+      </div>
       <Container>
         <Card>
           Clue 1

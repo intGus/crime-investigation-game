@@ -4,5 +4,6 @@ body {
   gap: 1rem;
   margin: 0;  
   min-height: 100vh;
-  background: linear-gradient(-45deg, #ff9f4d 10%, #ccc3b1 0, #ccc3b1 90%, #ff9f4d 0, #ff9f4d 100%);
+  background: white
+  font-family: 'Press Start 2P', cursive;
 }

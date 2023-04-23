@@ -7,6 +7,8 @@ const StyledCard = styled.div`
   background-size: 100% 50px, 50px 10px, 60px 10px, auto 50px;
   background-position: 0 0, 20px 80px, 20px 100px, left 0 bottom 20px;
   background-repeat: no-repeat;
+  padding: 10px;
+  font-size: 0.8rem
 `
 
 export default function Card({ children }) {
