@@ -1,0 +1,7 @@
+body {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  background: white;
+  font-family: 'Press Start 2P', cursive;
+}

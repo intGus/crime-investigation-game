@@ -6,7 +6,7 @@ const StyledGrid = styled.div`
   grid-auto-rows: 12.5rem;
   gap: 1rem;
   width: 100%;
-  max-width: 37.5rem;
+  max-width: 47.5rem;
   padding: 0.5rem;
   margin: 0 auto;
   box-sizing: border-box;

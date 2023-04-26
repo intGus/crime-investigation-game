@@ -78,28 +78,30 @@ function App() {
   return (
     <div className="App">
       <div className="nes-container with-title is-rounded">
-        <p class="title">Current Location</p>
+        <p className="title" style={{fontSize: "0.8rem"}}>Current Location</p>
         {arr[current] ?  `${arr[current].capital}, ${arr[current].name.common}` : 'Base'}
       </div>
-      <Container>
+      <div className="nes-container with-title is-rounded">
+        <Container>
+          <Card>
+            Clue 1
+          </Card>
+          <Card>
+            Clue 2
+          </Card>
+          <Card>
+            Clue 3
+          </Card>
+        </Container>
+        <Container passedColumns={4}>
         <Card>
-          Clue 1
-        </Card>
-        <Card>
-          Clue 2
-        </Card>
-        <Card>
-          Clue 3
-        </Card>
-      </Container>
-      <Container passedColumns={4}>
-      <Card>
-          {countries}
-        </Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-      </Container>
+            {countries}
+          </Card>
+          <Card></Card>
+          <Card></Card>
+          <Card></Card>
+        </Container>
+      </div>
     </div>
   )
 }
