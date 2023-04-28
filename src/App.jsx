@@ -35,6 +35,7 @@ function App() {
     }   
     return result;
   }
+  const [path, setPath] = useState()
 
   useEffect(() => {
     setGraph({
@@ -48,6 +49,8 @@ function App() {
     }, [graph]);
 
   const [current, setCurrent] = useState('base')
+
+ 
   
   function travel(node) {
     if (!graph[current].includes(node)) {
