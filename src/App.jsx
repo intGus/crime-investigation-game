@@ -35,7 +35,9 @@ function App() {
     }   
     return result;
   }
-  const [path, setPath] = useState()
+  const [path, setPath] = useState({
+    base: Math.floor(3 * Math.random())
+  })
 
   useEffect(() => {
     setGraph({
@@ -60,6 +62,15 @@ function App() {
     if (node in graph) {
       console.log(node + " exists")
     } else {
+      if (graph[current][path[current]] === node){
+        console.log('right path')
+        setPath((prevPath) => {
+          return({
+            ...prevPath,
+            [node]: Math.floor(3 * Math.random())
+          })
+        })
+      }
       setGraph((prevGraph) => {
         return({
           ...prevGraph,
@@ -88,6 +99,9 @@ function App() {
         <Container>
           <Card>
             Clue 1
+            <div>
+              {graph[current][path[current]]}
+            </div>
           </Card>
           <Card>
             Clue 2
@@ -97,7 +111,7 @@ function App() {
           </Card>
         </Container>
         <Container passedColumns={4}>
-        <Card>
+          <Card>
             {countries}
           </Card>
           <Card></Card>
