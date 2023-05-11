@@ -67,7 +67,7 @@ function App() {
         setPath((prevPath) => {
           return({
             ...prevPath,
-            [node]: Math.floor(3 * Math.random())
+            [node]: Math.floor(3 * Math.random()) + 1
           })
         })
       }
@@ -83,11 +83,14 @@ function App() {
   }
 
   let countries = 'loading'
+  let next = 0
   if (graph) {
     countries = graph[current].map((item, index) =>
     <li key={index} onClick={()=>travel(item)}>{item === 'base' ? 'Base' : arr[item].capital}</li>
     )
+    next = graph[current][path[current]]
   }
+
 
   return (
     <div className="App">
@@ -100,7 +103,7 @@ function App() {
           <Card>
             Clue 1
             <div>
-              {graph[current][path[current]]}
+              {arr[next] ? arr[next].continents[0] : 'loading'}
             </div>
           </Card>
           <Card>
