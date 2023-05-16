@@ -103,7 +103,7 @@ function App() {
           <Card>
             Clue 1
             <div>
-              {arr[next] ? arr[next].continents[0] : 'loading'}
+              {arr[next] ? `He went to a country located in ${arr[next].continents[0]}` : 'Seems like you are in the wrong place'}
             </div>
           </Card>
           <Card>
